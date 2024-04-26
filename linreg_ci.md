@@ -26,9 +26,9 @@ Als je de software R niet hebt geinstalleerd, kun je deze publieke pagina gebrui
 Op basis van die waarnemingen bereken je de volgende vergelijking voor een lijn
 $$\hat{y} = b_0 + b_1 x$$
 
-waarin $b_0$ de intercept parameter, en $b_1$ de helling parameter (kortweg intercept en helling). $\hat{y}$ is dus de _voorspelde_ response $y$, terwijl $x$ de waargenomen predictor variabele is. 
+waarin $b_0$ de intercept parameter, en $b_1$ de helling parameter (kortweg intercept en helling). $\hat{y}$ is dus de _voorspelde_ respons $y$, terwijl $x$ de waargenomen predictor variabele is. 
 
-De helling  $b_1$ wordt berekend door de volgende formule
+De helling $b_1$ wordt berekend door de volgende formule
 $$ b_1 =  \frac{\sum_{i=1}^{n}{(x_i - \bar{x})(y_i - \bar{y})}} {(x_i - \bar{x})^2}$$
 
 waar $\bar{x}$ het gemiddelde is van de $x$-waarnemingen en $\bar{y}$ het gemiddelde is van de $y$-waarnemingen, dus  $\bar{x}= \sum(x)/n$ en $\bar{y}= \sum(y)/n$

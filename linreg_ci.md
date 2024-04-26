@@ -5,16 +5,27 @@ Je start met $n$ gepaarde waarnemingen van een response variabele $y$ en een pre
 
 ## berekening in R
 
-Als je op basis van deze waarnemingen de parameters voor de lijn en betrouwbaarheid van die parameters wilt berekenen is de gemakkelijkste manier via de volgende code in R.
+Als je op basis van deze waarnemingen de parameters voor de regressielijn en betrouwbaarheid van die parameters wilt berekenen is de gemakkelijkste manier de volgende code in R.
 
 ```
+# data-invoer
 y <- c(12,11,12,15,13,16,13,18,11,14)
 x <- c(50,51,62,45,63,76,53,68,51,74)
+
+# keuze van betrouwbaarheidsniveau (confidence level):
+cl <- 0.95
+
+# fit lineair model door data
 model <- lm(y~x)
-confint(model, level = .95)
+
+# print model-coefficienten en betrouwbaarheidsinterval
+# voor een meer volledige samenvatting van het model: summary(model)
+print(coef(model))
+print(confint(model, level = cl))
+
 ```
 **uitleg**: 
-- de getallen binnen  c( ...) zijn de waarnemingen voor de x- en y-variabelen.
+- hierin hoef je alleen de getallen binnen  c( ...) te vervangen.
 - het commando lm() fit het lineaire model
 - het commando confint berekent de betrouwbaarheidsintervallen (in dit geval 95% intervallen) voor de 2 parameters van het lineaire model en print de output
 
@@ -26,15 +37,15 @@ Als je de software R niet hebt geinstalleerd, kun je deze publieke pagina gebrui
 Op basis van die waarnemingen bereken je de volgende vergelijking voor een lijn
 $$\hat{y} = b_0 + b_1 x$$
 
-waarin $b_0$ de intercept parameter, en $b_1$ de helling parameter (kortweg intercept en helling). $\hat{y}$ is dus de _voorspelde_ respons $y$, terwijl $x$ de waargenomen predictor variabele is. 
+waarin $b_0$ de intercept parameter, en $b_1$ de helling parameter (kortweg intercept en helling). $\hat{y}$ is dus de _voorspelde_ response $y$, terwijl $x$ de waargenomen predictor variabele is. 
 
-De helling $b_1$ wordt berekend door de volgende formule
-$$b_1 =  \frac{\sum_{i=1}^{n}{(x_i - \bar{x})(y_i - \bar{y})}} {(x_i - \bar{x})^2}$$
+De helling  $b_1$ wordt berekend door de volgende formule
+$$b_1 =  \frac{ \sum_{i=1}^{n}{ (x_i - \bar{x})(y_i - \bar{y}})} {\sum_{i=1}^{n}{(x_i - \bar{x})^2}}$$
 
 waar $\bar{x}$ het gemiddelde is van de $x$-waarnemingen en $\bar{y}$ het gemiddelde is van de $y$-waarnemingen, dus  $\bar{x}= \sum(x)/n$ en $\bar{y}= \sum(y)/n$
 
 Na het berekenen van de helling wordt het intercept berekend door:
-$$b_0 = \bar{y}− b_1$$
+$$b_0 = \bar{y}− b_1*\bar{x}$$
 
 Het residu van observatie $i$ wordt berekend door:
 $$e_i = y_i − \hat{y}_i$$
@@ -47,7 +58,7 @@ $$s_{est} = \sqrt{\frac{SS_{residual}}{df}} = \sqrt{\frac{\sum{{e_i}^2}}{n-2}}$$
 Hierin staat _df_ voor het aantal vrijheidsgraden (_degrees of freedom_).
 
 De standaard fout van de helling $b_1$(_standard error of the slope_) is dan
-$$s_{b1} = \frac{s_{est}}{ \sqrt{SS_x }} =\frac{s_{est}}{\sqrt{\sum{(x_i - \bar{x})^2}}}$$
+$$ s_{b1} = \frac{s_{est}}{ \sqrt{SS_x }} =\frac{s_{est}}{\sqrt{\sum{(x_i - \bar{x})^2}}} $$
 
 Deze standaard fout $s_{b1}$ wordt gebruikt in de berekening van het betrouwbaarheidsinterval  voor de helling (_confidence interval for the slope_, $CI_{\beta_1}$)
 De algemene formule voor het berekenen van een $C\%$ betrouwbaarheidsinterval van de helling $\beta_1$:
@@ -66,16 +77,27 @@ Hierin heeft $t^∗$ dezelfde waarde als eerder: is de kritische waarde van de t
 
 ## R-code voor betrouwbaarheidsintervallen 'met de hand'
 
+### model parameters
+
 ### helling
 ```
-# haal benodigde gegevens uit het gefitte model & de data
-slope <- coef(model)[2]
-df <- length(x)-2
-res <- model$residuals
+# merk op dat parameters en variabelen uit het vorige code-blok ook hier als input 
+# worden gebruikt: x, y en cl
 
-# bereken parameters
-se <- sqrt(sum(res^2)/(df))
-s_slope <- se/sqrt( sum((x-mean(x))^2) )
+# aantal vrijheidsgraden (= aantal waarnemingen - aantal vrije paramters in model)
+n <- length(x)
+df <- n-2
+
+# bereken de modelparameters
+slope <- sum( (x-mean(x))*(y-mean(y)))/sum((x-mean(x))^2)
+intercept <- mean(y)-slope*mean(x)
+
+# bereken model-residuen, standaard fout van de schatting
+# en de standaard fout van de helling
+#  parameters
+res <- y - (slope*x + intercept)
+s_est <- sqrt(sum(res^2)/(df))
+s_slope <- s_est/sqrt( sum((x-mean(x))^2) )
 tstar <- qt((cl+1)/2,df)  
 # opmerking bij tstar:
 #    vanwege een tweezijdig interval, is bij een confidence level van 0.95
@@ -91,15 +113,10 @@ cat(cl, 'betrouwbaarheidsinterval helling: (', ci_sl, ',', ci_su, ')')
 
 ### intercept
 ```
-# haal benodigde gegevens uit het gefitte model & de data
-intercept <- coef(model)[1]
-df <- length(x)-2
-res <- model$residuals
+# merk op dat parameters en variabelen uit het vorige code-blok ook hier als input 
+# worden gebruikt, bijv. s_slope
 
-# bereken parameters
-se <- sqrt(sum(res^2)/(df))
-s_slope <- se/sqrt( sum((x-mean(x))^2) )
-s_int <- s_slope * sqrt(sum(x^2)/length(x))
+s_int <- s_slope * sqrt(sum(x^2)/n)
 tstar <- qt((cl+1)/2,df)
 
 # ondergrens en bovengrens van betrouwbaarheidsinterval

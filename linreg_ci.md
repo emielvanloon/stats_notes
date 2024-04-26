@@ -5,7 +5,7 @@ Je start met $n$ gepaarde waarnemingen van een response variabele $y$ en een pre
 
 ## berekening in R
 
-Als je op basis van deze waarnemingen de parameters voor de lijn en betrouwbaarheid van die parameters wilt berekenen is de gemakkelijkste manier de volgende code in R (R is een geinterpreteerde programmeertaal, de de-facto standaard voor statistische berekenignen).
+Als je op basis van deze waarnemingen de parameters voor de lijn en betrouwbaarheid van die parameters wilt berekenen is de gemakkelijkste manier via de volgende code in R.
 
 ```
 y <- c(12,11,12,15,13,16,13,18,11,14)
@@ -14,7 +14,7 @@ model <- lm(y~x)
 confint(model, level = .95)
 ```
 **uitleg**: 
-- hierin hoeft alleen de getallen binnen  c( ...) te vervangen.
+- de getallen binnen  c( ...) zijn de waarnemingen voor de x- en y-variabelen.
 - het commando lm() fit het lineaire model
 - het commando confint berekent de betrouwbaarheidsintervallen (in dit geval 95% intervallen) voor de 2 parameters van het lineaire model en print de output
 

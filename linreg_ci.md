@@ -42,7 +42,7 @@ waar $Y_i$ de geobserveerde en $\hat{Y}_i$ de voorspelde waarde van observatie $
 
 De standaardafwijking van de residuen wordt ook de standaard fout van de schatting genoemd (_standard error of estimate_) en wordt als volgt berekend.
 
-$$ s_{est} = \frac{\sqrt{SS_{residual}}}{df} = \frac{\sqrt{\sum{{e_i}^2}}}{n-2}$$
+$$ s_{est} = \sqrt{\frac{SS_{residual}}{df}} = \sqrt{\frac{\sum{{e_i}^2}}{n-2}}$$
 
 Hierin staat _df_ voor het aantal vrijheidsgraden (_degrees of freedom_).
 
@@ -59,9 +59,7 @@ Toelichting op t(n-2): de t-verdeling heeft 1 parameter als input, het aantal vr
 De standaard fout van het intercept $b_0$(_standard error of the intercept_) wordt berekend door 
 $$ s_{b0} = s_{b1}\sqrt{ \frac{\sum{{x_i}^2}}{n}} $$
 
-De berekening van het betrouwbaarheidsinterval voor het intercept $\beta_0$ is identiek aan die bij de helling:
-
-Voor het berekenen van een $C\%$ betrouwbaarheidsinterval van het intercept $\beta_0$ gebruik je:
+De berekening van het betrouwbaarheidsinterval voor het intercept $\beta_0$ is verder het zelfde als bij de helling:voor een $C\%$ betrouwbaarheidsinterval gebruik je:
 $$CI_{\beta_0} = (b_0 - t^* s_{b0}, b_0 + t^* s_{b0})$$
 
 Hierin heeft $t^∗$ dezelfde waarde als eerder: is de kritische waarde van de t(n-2) verdeling, zodanig dat de kans $P(−t^∗ ≤ t ≤ t^∗) = C/100$ 

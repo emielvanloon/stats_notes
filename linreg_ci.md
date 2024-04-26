@@ -29,7 +29,7 @@ $$\hat{y} = b_0 + b_1 x$$
 waarin $b_0$ de intercept parameter, en $b_1$ de helling parameter (kortweg intercept en helling). $\hat{y}$ is dus de _voorspelde_ respons $y$, terwijl $x$ de waargenomen predictor variabele is. 
 
 De helling $b_1$ wordt berekend door de volgende formule
-$$ b_1 =  \frac{\sum_{i=1}^{n}{(x_i - \bar{x})(y_i - \bar{y})}} {(x_i - \bar{x})^2}$$
+$$b_1 =  \frac{\sum_{i=1}^{n}{(x_i - \bar{x})(y_i - \bar{y})}} {(x_i - \bar{x})^2}$$
 
 waar $\bar{x}$ het gemiddelde is van de $x$-waarnemingen en $\bar{y}$ het gemiddelde is van de $y$-waarnemingen, dus  $\bar{x}= \sum(x)/n$ en $\bar{y}= \sum(y)/n$
 
@@ -42,12 +42,12 @@ waar $Y_i$ de geobserveerde en $\hat{Y}_i$ de voorspelde waarde van observatie $
 
 De standaardafwijking van de residuen wordt ook de standaard fout van de schatting genoemd (_standard error of estimate_) en wordt als volgt berekend.
 
-$$ s_{est} = \sqrt{\frac{SS_{residual}}{df}} = \sqrt{\frac{\sum{{e_i}^2}}{n-2}}$$
+$$s_{est} = \sqrt{\frac{SS_{residual}}{df}} = \sqrt{\frac{\sum{{e_i}^2}}{n-2}}$$
 
 Hierin staat _df_ voor het aantal vrijheidsgraden (_degrees of freedom_).
 
 De standaard fout van de helling $b_1$(_standard error of the slope_) is dan
-$$ s_{b1} = \frac{s_{est}}{ \sqrt{SS_x }} =\frac{s_{est}}{\sqrt{\sum{(x_i - \bar{x})^2}}} $$
+$$s_{b1} = \frac{s_{est}}{ \sqrt{SS_x }} =\frac{s_{est}}{\sqrt{\sum{(x_i - \bar{x})^2}}}$$
 
 Deze standaard fout $s_{b1}$ wordt gebruikt in de berekening van het betrouwbaarheidsinterval  voor de helling (_confidence interval for the slope_, $CI_{\beta_1}$)
 De algemene formule voor het berekenen van een $C\%$ betrouwbaarheidsinterval van de helling $\beta_1$:
@@ -57,7 +57,7 @@ Hierin is $t^∗$ is de kritische waarde van de t(n-2) verdeling, zodanig dat de
 Toelichting op t(n-2): de t-verdeling heeft 1 parameter als input, het aantal vrijheidsgraden. Dus deze notatie geeft de input voor de t-verdeling weer.
 
 De standaard fout van het intercept $b_0$(_standard error of the intercept_) wordt berekend door 
-$$ s_{b0} = s_{b1}\sqrt{ \frac{\sum{{x_i}^2}}{n}} $$
+$$s_{b0} = s_{b1}\sqrt{ \frac{\sum{{x_i}^2}}{n}}$$
 
 De berekening van het betrouwbaarheidsinterval voor het intercept $\beta_0$ is verder het zelfde als bij de helling:voor een $C\%$ betrouwbaarheidsinterval gebruik je:
 $$CI_{\beta_0} = (b_0 - t^* s_{b0}, b_0 + t^* s_{b0})$$

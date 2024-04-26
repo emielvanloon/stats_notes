@@ -111,8 +111,8 @@ cat(cl, 'betrouwbaarheidsinterval helling: (', ci_sl, ',', ci_su, ')')
 
 ### intercept
 ```R
-# merk op dat parameters en variabelen uit het vorige code-blok ook hier als input 
-# worden gebruikt: s_slope, x, n, tstar
+# merk op dat parameters en variabelen uit de vorige code-blokken ook hier als input 
+# worden gebruikt: s_slope, x, n, intercept, tstar, cl
 
 s_int <- s_slope * sqrt(sum(x^2)/n)
 

@@ -112,10 +112,9 @@ cat(cl, 'betrouwbaarheidsinterval helling: (', ci_sl, ',', ci_su, ')')
 ### intercept
 ```R
 # merk op dat parameters en variabelen uit het vorige code-blok ook hier als input 
-# worden gebruikt, bijv. s_slope
+# worden gebruikt: s_slope, x, n, tstar
 
 s_int <- s_slope * sqrt(sum(x^2)/n)
-tstar <- qt((cl+1)/2,df)
 
 # ondergrens en bovengrens van betrouwbaarheidsinterval
 ci_il <- intercept - s_int * tstar
@@ -123,5 +122,4 @@ ci_iu <- intercept + s_int * tstar
 
 # print betrouwbaarheidsinterval
 cat(cl, 'betrouwbaarheidsinterval intercept: (', ci_il, ',', ci_iu, ')')
-
 ```

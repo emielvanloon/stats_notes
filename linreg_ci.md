@@ -7,7 +7,7 @@ Je start met $n$ gepaarde waarnemingen van een response variabele $y$ en een pre
 
 Als je op basis van deze waarnemingen de parameters voor de regressielijn en betrouwbaarheid van die parameters wilt berekenen is de gemakkelijkste manier de volgende code in R.
 
-```
+```R
 # data-invoer
 y <- c(12,11,12,15,13,16,13,18,11,14)
 x <- c(50,51,62,45,63,76,53,68,51,74)
@@ -78,7 +78,7 @@ Hierin heeft $t^∗$ dezelfde waarde als eerder: is de kritische waarde van de t
 ## R-code voor betrouwbaarheidsintervallen 'met de hand'
 
 ### helling
-```
+```R
 # merk op dat parameters en variabelen uit het vorige code-blok ook hier als input 
 # worden gebruikt: x, y en cl
 
@@ -110,7 +110,7 @@ cat(cl, 'betrouwbaarheidsinterval helling: (', ci_sl, ',', ci_su, ')')
 ```
 
 ### intercept
-```
+```R
 # merk op dat parameters en variabelen uit het vorige code-blok ook hier als input 
 # worden gebruikt, bijv. s_slope
 

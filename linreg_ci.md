@@ -42,14 +42,14 @@ waarin $b_0$ de intercept parameter, en $b_1$ de helling parameter (kortweg inte
 De helling  $b_1$ wordt berekend door de volgende formule
 $$b_1 =  \frac{ \sum_{i=1}^{n}{ (x_i - \bar{x})(y_i - \bar{y}})} {\sum_{i=1}^{n}{(x_i - \bar{x})^2}}$$
 
-waar $\bar{x}$ het gemiddelde is van de $x$-waarnemingen en $\bar{y}$ het gemiddelde is van de $y$-waarnemingen, dus  $\bar{x}= \sum(x)/n$ en $\bar{y}= \sum(y)/n$
+waar $\bar{x}$ het gemiddelde is van de $x$-waarnemingen en $\bar{y}$ het gemiddelde is van de $y$-waarnemingen, dus  $\bar{x}= \sum x_i/n$ en $\bar{y}= \sum y_i/n$
 
 Na het berekenen van de helling wordt het intercept berekend door:
 $$b_0 = \bar{y}− b_1*\bar{x}$$
 
 Het residu van observatie $i$ wordt berekend door:
 $$e_i = y_i − \hat{y}_i$$
-waar $Y_i$ de geobserveerde en $\hat{Y}_i$ de voorspelde waarde van observatie $i$ is
+waar $y_i$ de geobserveerde en $\hat{y}_i$ de voorspelde waarde van observatie $i$ is
 
 De standaardafwijking van de residuen wordt ook de standaard fout van de schatting genoemd (_standard error of estimate_) en wordt als volgt berekend.
 
@@ -70,14 +70,12 @@ Toelichting op t(n-2): de t-verdeling heeft 1 parameter als input, het aantal vr
 De standaard fout van het intercept $b_0$(_standard error of the intercept_) wordt berekend door 
 $$s_{b0} = s_{b1}\sqrt{ \frac{\sum{{x_i}^2}}{n}}$$
 
-De berekening van het betrouwbaarheidsinterval voor het intercept $\beta_0$ is verder het zelfde als bij de helling:voor een $C\%$ betrouwbaarheidsinterval gebruik je:
+De berekening van het betrouwbaarheidsinterval voor het intercept $\beta_0$ is verder het zelfde als bij de helling: voor een $C\%$ betrouwbaarheidsinterval gebruik je:
 $$CI_{\beta_0} = (b_0 - t^* s_{b0}, b_0 + t^* s_{b0})$$
 
 Hierin heeft $t^∗$ dezelfde waarde als eerder: is de kritische waarde van de t(n-2) verdeling, zodanig dat de kans $P(−t^∗ ≤ t ≤ t^∗) = C/100$ 
 
 ## R-code voor betrouwbaarheidsintervallen 'met de hand'
-
-### model parameters
 
 ### helling
 ```

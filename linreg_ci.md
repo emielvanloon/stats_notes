@@ -58,7 +58,7 @@ $$s_{est} = \sqrt{\frac{SS_{residual}}{df}} = \sqrt{\frac{\sum{{e_i}^2}}{n-2}}$$
 Hierin staat _df_ voor het aantal vrijheidsgraden (_degrees of freedom_).
 
 De standaard fout van de helling $b_1$(_standard error of the slope_) is dan
-$$ s_{b1} = \frac{s_{est}}{ \sqrt{SS_x }} =\frac{s_{est}}{\sqrt{\sum{(x_i - \bar{x})^2}}} $$
+$$s_{b1} = \frac{s_{est}}{ \sqrt{SS_x }} =\frac{s_{est}}{\sqrt{\sum{(x_i - \bar{x})^2}}}$$
 
 Deze standaard fout $s_{b1}$ wordt gebruikt in de berekening van het betrouwbaarheidsinterval  voor de helling (_confidence interval for the slope_, $CI_{\beta_1}$)
 De algemene formule voor het berekenen van een $C\%$ betrouwbaarheidsinterval van de helling $\beta_1$:
